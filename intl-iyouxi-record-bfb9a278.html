@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>爱游戏 · 站点介绍与说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f0f8fa;
+            color: #1e2b2f;
+            line-height: 1.7;
+            padding: 1.5rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .page-grid {
+            max-width: 1120px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+
+        /* 卡片装饰 */
+        .card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 1.8rem;
+            box-shadow: 0 8px 24px rgba(0, 80, 90, 0.05);
+            border: 1px solid #d4e9ed;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 12px 32px rgba(0, 100, 110, 0.08);
+        }
+
+        /* 头部区域 */
+        .hero {
+            text-align: left;
+            padding: 2.8rem 2rem;
+            background: linear-gradient(145deg, #e1f3f6, #cde5ea);
+            border-radius: 24px;
+            border: 1px solid #bddce3;
+        }
+
+        .hero h1 {
+            font-size: 2.4rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            color: #104046;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #2f5c64;
+            max-width: 600px;
+            border-left: 4px solid #379aa8;
+            padding-left: 1.2rem;
+            margin-top: 0.4rem;
+        }
+
+        /* 正文排版 */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: #1c515b;
+            margin-bottom: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .section-title::before {
+            content: "▍";
+            color: #379aa8;
+            font-weight: 300;
+        }
+
+        .body-text {
+            font-size: 1rem;
+            color: #1e353b;
+            margin-bottom: 1.4rem;
+            text-align: justify;
+        }
+
+        .body-text strong {
+            color: #1d6d7a;
+            font-weight: 500;
+        }
+
+        .quote-block {
+            background: #e6f3f6;
+            border-left: 5px solid #379aa8;
+            padding: 1.2rem 1.8rem;
+            border-radius: 0 16px 16px 0;
+            margin: 1.8rem 0;
+            font-style: normal;
+            color: #1f4f59;
+            font-size: 0.98rem;
+            line-height: 1.6;
+        }
+
+        .quote-block::before {
+            content: "💬 ";
+            font-style: normal;
+        }
+
+        .inline-link {
+            color: #1b7a8a;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px dashed #7cb8c3;
+            padding-bottom: 1px;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        .inline-link:hover {
+            color: #0b4f5c;
+            border-bottom-color: #0b4f5c;
+        }
+
+        .btn-like {
+            display: inline-block;
+            background: #e1f0f3;
+            color: #1a5b66;
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            border: 1px solid #b3d3da;
+            margin-top: 0.4rem;
+            pointer-events: none;
+        }
+
+        /* 网格卡片 —— 两列自适应 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.4rem;
+            margin-top: 0.6rem;
+        }
+
+        .feature-item {
+            background: #f6fcfd;
+            border-radius: 18px;
+            padding: 1.5rem 1.4rem;
+            border: 1px solid #d3e6eb;
+            transition: background 0.1s;
+        }
+
+        .feature-item:hover {
+            background: #ecf7f9;
+        }
+
+        .feature-item h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #0d555f;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: #2b5861;
+            line-height: 1.5;
+        }
+
+        /* 引用提示小卡片 */
+        .tip-card {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 1.6rem 2rem;
+            border: 1px solid #cce3e8;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 0.8rem 1.2rem;
+            margin: 1.2rem 0;
+        }
+
+        .tip-card .label {
+            font-weight: 500;
+            color: #0a5f6b;
+            background: #d8edf2;
+            padding: 0.2rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+        }
+
+        .tip-card .text {
+            flex: 1;
+            min-width: 180px;
+            color: #1c4c55;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #d9e9ed;
+            padding: 0.9rem 0;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-q {
+            font-weight: 500;
+            color: #10464f;
+            margin-bottom: 0.2rem;
+        }
+
+        .faq-a {
+            font-size: 0.92rem;
+            color: #2a5d66;
+        }
+
+        .site-footer {
+            margin-top: 2.4rem;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #5a828b;
+            border-top: 1px solid #d0e2e7;
+            padding-top: 1.8rem;
+        }
+
+        /* 响应式 */
+        @media (max-width: 640px) {
+            body {
+                padding: 1rem;
+            }
+
+            .hero {
+                padding: 2rem 1.2rem;
+            }
+
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .card {
+                padding: 1.6rem 1.2rem;
+            }
+
+            .quote-block {
+                padding: 1rem 1.2rem;
+            }
+
+            .tip-card {
+                padding: 1.2rem 1.2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-grid">
+        <!-- hero 简洁介绍 -->
+        <div class="hero">
+            <h1>爱游戏 · 一种叙述</h1>
+            <div class="sub">从站点本身出发，聊聊它的来由、边界与可信的角落。</div>
+        </div>
+
+        <!-- 正文段落：站点介绍与可信说明 -->
+        <div class="card">
+            <div class="section-title">关于这里</div>
+            <p class="body-text">
+                几年前，几个朋友因为相同的爱好聚在一起，慢慢搭建了一个小小的站点，也就是后来大家知道的 <a href="https://intl-iyouxi.com" class="inline-link">爱游戏</a>。没有宏大的口号，只是想把一些经过验证的信息、安静的讨论和实用的指引放在同一个地方。它不是资讯瀑布流，也不追求日更的数量；更像一间书架整齐的资料室，你走进去，能翻到一些真正需要的东西。
+            </p>
+            <p class="body-text">
+                站内的大部分内容来自长期的观察和筛选，<strong>不追逐热点</strong>，不制造焦虑。每一篇介绍、每一段说明，都尽量保留来源和上下文，方便你自行判断。如果你在别处看到相互矛盾的说法，不妨来这里比对一下——至少这里的每一句话，都经过至少两次确认。
+            </p>
+            <div class="quote-block">
+                一位常客曾这样形容：「它不像一个门户，倒像一个愿意陪你慢慢查资料的朋友。」 我们觉得这个评价很贴切。
+            </div>
+            <p class="body-text">
+                当然，任何站点都有局限。<strong>爱游戏</strong>也不例外。它更偏向于经验分享与常识梳理，而非绝对权威。如果你发现某个信息已经过时，或者有更好的补充，欢迎通过站内信使告诉我们——每一个提醒都会让这个地方更可靠一点。
+            </p>
+        </div>
+
+        <!-- 网格卡片：几个特点（场景化） -->
+        <div class="card">
+            <div class="section-title">常见的几个场景</div>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <h3>想了解一款游戏</h3>
+                    <p>先翻翻站内的「作品手记」栏目，那里有玩法概述、美术风格以及一些容易被忽略的细节。</p>
+                </div>
+                <div class="feature-item">
+                    <h3>寻找同类兴趣的人</h3>
+                    <p>站内有一个安静的交流区，没有排行榜，没有刷屏，只有围绕具体话题的讨论。</p>
+                </div>
+                <div class="feature-item">
+                    <h3>查证某个说法</h3>
+                    <p>很多文章后面附有参考链接或原始出处，你可以顺着线索去验证，而不是盲目相信。</p>
+                </div>
+                <div class="feature-item">
+                    <h3>随便逛逛</h3>
+                    <p>首页的「最近更新」模块会推送几篇不同方向的内容，偶尔会有意想不到的收获。</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 引用提示 + 访问句 -->
+        <div class="tip-card">
+            <span class="label">📌 访问提示</span>
+            <span class="text">如果你正好奇上面提到的「作品手记」或交流区是什么样子，不妨直接去 <a href="https://intl-iyouxi.com" class="inline-link">爱游戏</a> 转一圈。没有弹窗，没有强制注册，首页就能看到最近的内容。</span>
+        </div>
+
+        <!-- FAQ 摘要  -->
+        <div class="card">
+            <div class="section-title">几个常被问起的问题</div>
+            <div class="faq-item">
+                <div class="faq-q">这个站点的内容多久更新一次？</div>
+                <div class="faq-a">没有固定排期，但平均每周会有 2-3 篇新内容或修订。重要的更新会出现在首页的「最近」区域。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">需要登录才能浏览全部内容吗？</div>
+                <div class="faq-a">大部分内容对访客开放，只有少数需要保存进度的功能（比如收藏）才建议注册账号。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">我能相信这里的所有信息吗？</div>
+                <div class="faq-a">我们尽力保证准确，但任何站点都无法做到 100% 无误。遇到可疑的地方，欢迎指正。</div>
+            </div>
+            <div style="margin-top: 1rem; text-align: right;">
+                <span class="btn-like">更多 FAQ 在站内对应页面</span>
+            </div>
+        </div>
+
+        <!-- footer  -->
+        <div class="site-footer">
+            <span>爱游戏 · 一个安静的资料角落</span>
+            <span style="display: block; margin-top: 0.3rem; opacity: 0.7;">—— 由几位爱好者共同维护 ——</span>
+        </div>
+    </div>
+</body>
+</html>
